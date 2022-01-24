@@ -8,14 +8,18 @@ import './NoDelegateCall.sol';
 
 import './UniswapV3Pool.sol';
 
+// 1. 部署Uniswap V3 pools合约
+// 2. 管理合约所有权
+// 3. 管理手续费
+
 /// @title Canonical Uniswap V3 factory
 /// @notice Deploys Uniswap V3 pools and manages ownership and control over pool protocol fees
 contract UniswapV3Factory is IUniswapV3Factory, UniswapV3PoolDeployer, NoDelegateCall {
     /// @inheritdoc IUniswapV3Factory
-    address public override owner;
+    address public override owner;  // 合约拥有者
 
     /// @inheritdoc IUniswapV3Factory
-    mapping(uint24 => int24) public override feeAmountTickSpacing;
+    mapping(uint24 => int24) public override feeAmountTickSpacing;  // 费用间距
     /// @inheritdoc IUniswapV3Factory
     mapping(address => mapping(address => mapping(uint24 => address))) public override getPool;
 
@@ -50,7 +54,7 @@ contract UniswapV3Factory is IUniswapV3Factory, UniswapV3PoolDeployer, NoDelegat
         emit PoolCreated(token0, token1, fee, tickSpacing, pool);
     }
 
-    /// @inheritdoc IUniswapV3Factory
+    /// @inheritdoc IUniswapV3Factory(更改合约所有权)
     function setOwner(address _owner) external override {
         require(msg.sender == owner);
         emit OwnerChanged(owner, _owner);

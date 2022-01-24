@@ -28,6 +28,7 @@ import './interfaces/callback/IUniswapV3SwapCallback.sol';
 import './interfaces/callback/IUniswapV3FlashCallback.sol';
 
 contract UniswapV3Pool is IUniswapV3Pool, NoDelegateCall {
+    // 引入的库文件, 绑定的数据类型
     using LowGasSafeMath for uint256;
     using LowGasSafeMath for int256;
     using SafeCast for uint256;
@@ -38,11 +39,11 @@ contract UniswapV3Pool is IUniswapV3Pool, NoDelegateCall {
     using Position for Position.Info;
     using Oracle for Oracle.Observation[65535];
 
-    /// @inheritdoc IUniswapV3PoolImmutables
+    /// @inheritdoc IUniswapV3PoolImmutables(UniswapV3Factory合约地址)
     address public immutable override factory;
-    /// @inheritdoc IUniswapV3PoolImmutables
+    /// @inheritdoc IUniswapV3PoolImmutables(token0合约地址)
     address public immutable override token0;
-    /// @inheritdoc IUniswapV3PoolImmutables
+    /// @inheritdoc IUniswapV3PoolImmutables(token1合约地址)
     address public immutable override token1;
     /// @inheritdoc IUniswapV3PoolImmutables
     uint24 public immutable override fee;

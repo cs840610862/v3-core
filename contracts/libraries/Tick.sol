@@ -15,7 +15,7 @@ library Tick {
 
     // info stored for each initialized individual tick
     struct Info {
-        // the total position liquidity that references this tick
+        // the total position liquidity that references this tick(引用此报价的总头寸流动性)
         uint128 liquidityGross;
         // amount of net liquidity added (subtracted) when tick is crossed from left to right (right to left),
         int128 liquidityNet;

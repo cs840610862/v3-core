@@ -16,6 +16,7 @@ library TransferHelper {
         address to,
         uint256 value
     ) internal {
+        // call 方式调用token代币转账
         (bool success, bytes memory data) =
             token.call(abi.encodeWithSelector(IERC20Minimal.transfer.selector, to, value));
         require(success && (data.length == 0 || abi.decode(data, (bool))), 'TF');

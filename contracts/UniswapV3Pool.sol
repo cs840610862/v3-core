@@ -851,6 +851,7 @@ contract UniswapV3Pool is IUniswapV3Pool, NoDelegateCall {
         uint128 amount0Requested,
         uint128 amount1Requested
     ) external override lock onlyFactoryOwner returns (uint128 amount0, uint128 amount1) {
+        // 取amount0Requested和protocolFees.token0较小的值
         amount0 = amount0Requested > protocolFees.token0 ? protocolFees.token0 : amount0Requested;
         amount1 = amount1Requested > protocolFees.token1 ? protocolFees.token1 : amount1Requested;
 
